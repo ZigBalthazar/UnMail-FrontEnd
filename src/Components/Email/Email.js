@@ -27,7 +27,7 @@ export default function Email() {
 
         setTimeout(() => {
             setSubmitClick(false)  
-        }, 2000);
+        }, 1000);
         setSubmitClick(true)
 
         if (ContextValue.inputsValidTrue && ContextValue.SubjectValue && ContextValue.TextValue && ContextValue.EmailValue) {

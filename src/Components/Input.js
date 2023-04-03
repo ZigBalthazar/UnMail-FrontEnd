@@ -34,14 +34,6 @@ export default function Input({ placeholder, name, SubmitClick }) {
         setRegex(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$/)
         break
       }
-      case 'Text': {
-        setRegex(/\S{2,100}/)
-        break
-      }
-      case 'Subject': {
-        setRegex(/\S{2,10}/)
-        break
-      }
 
 
     }
