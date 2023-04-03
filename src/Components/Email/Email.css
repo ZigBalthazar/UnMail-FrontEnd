@@ -146,13 +146,7 @@ nav a{
 
 
   }
-  input:-internal-autofill-selected {
-    background-image: url('../../../public/images/photo_5848227693475248874_x.jpg') !important;
-    appearance: unset;
-
-    background-color: white !important;
-    color: fieldtext !important;
-  }
+ 
   section input:nth-child(1){
     background-image: url('../../../public/images/photo_5848227693475248874_x.jpg');
   }
