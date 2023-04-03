@@ -10,6 +10,7 @@ export default function Email() {
     const ContextValue = useContext(AllValue)
     const [sendClickStatus, setSendClickStatus] = useState(false)
     const [SubmitClick,setSubmitClick]=useState(false)
+    const [EmailValidation, setEmailValidation] = useState(false)
     const particlesInit = async (main) => {
         await loadFull(main);
     };
@@ -30,7 +31,7 @@ export default function Email() {
         }, 1000);
         setSubmitClick(true)
 
-        if (ContextValue.inputsValidTrue && ContextValue.SubjectValue && ContextValue.TextValue && ContextValue.EmailValue) {
+        if (EmailValidation && ContextValue.SubjectValue && ContextValue.TextValue ) {
             swal({
                 title: "Email Was Sent",
 
@@ -162,9 +163,9 @@ export default function Email() {
 
 
                 <section>
-                    <Input sendClickStatus={sendClickStatus} SubmitClick={SubmitClick} name='Email' placeholder='To...' />
-                    <Input sendClickStatus={sendClickStatus} SubmitClick={SubmitClick} name='Subject' placeholder='Subject...' />
-                    <Input sendClickStatus={sendClickStatus} SubmitClick={SubmitClick} name='Text' placeholder='Text...' />
+                    <Input setEmailValidation={setEmailValidation} sendClickStatus={sendClickStatus} SubmitClick={SubmitClick} name='Email' placeholder='To...' />
+                    <Input setEmailValidation={setEmailValidation} sendClickStatus={sendClickStatus} SubmitClick={SubmitClick} name='Subject' placeholder='Subject...' />
+                    <Input setEmailValidation={setEmailValidation} sendClickStatus={sendClickStatus} SubmitClick={SubmitClick} name='Text' placeholder='Text...' />
 
                 </section>
 
