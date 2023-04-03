@@ -1,12 +1,13 @@
 import React from 'react'
 import { useState, useEffect, useContext } from 'react'
 import AllValue from '../Context/AllValue'
-export default function Input({ type, placeholder, name, sendClickStatus }) {
+export default function Input({ placeholder, name, SubmitClick }) {
   const [Value, SetValue] = useState(null)
   const [regex, setRegex] = useState('')
+  const [regexStatus,setregexStatus]= useState('')
   const ContextValue = useContext(AllValue)
   const InputRegex = RegExp(regex)
-  let regexStatus;
+  
 
   const InputChangeHandler = (e) => {
     SetValue(e.target.value)
@@ -31,21 +32,23 @@ export default function Input({ type, placeholder, name, sendClickStatus }) {
     switch (name) {
       case 'Email': {
         setRegex(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$/)
+        break
       }
       case 'Text': {
-        setRegex(/\S{2,100}? /)
+        setRegex(/\S{2,100}/)
+        break
       }
       case 'Subject': {
         setRegex(/\S{2,10}/)
+        break
       }
 
 
-        break;
     }
 
-    regexStatus = InputRegex.test(Value)
-    console.log(regexStatus);
-
+    setregexStatus(InputRegex.test(Value))
+  
+console.log(regexStatus);
     if (regexStatus) {
 
       ContextValue.setInputsValidTrue(true)
@@ -53,8 +56,17 @@ export default function Input({ type, placeholder, name, sendClickStatus }) {
     else {
       ContextValue.setInputsValidTrue(false)
     }
+
+
+
   }, [Value])
 
+useEffect(() => {
+
+SetValue('')
+
+ 
+}, [SubmitClick])
 
   return <input className={name} name={name} onChange={(e) => InputChangeHandler(e)} value={Value} type={name == 'Email' ? 'email' : 'text'} placeholder={placeholder} />
 

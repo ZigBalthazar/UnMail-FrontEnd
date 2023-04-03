@@ -4,17 +4,17 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import swal from 'sweetalert';
 import AllValue from '../../Context/AllValue';
-import Input from '../Input'
+import Input from '../Input';
 export default function Email() {
     const [darkMode, setDarkMode] = useState(false)
     const ContextValue = useContext(AllValue)
     const [sendClickStatus, setSendClickStatus] = useState(false)
-
+    const [SubmitClick,setSubmitClick]=useState(false)
     const particlesInit = async (main) => {
         await loadFull(main);
     };
     const particlesLoaded = (container) => {
-        console.log(container);
+        
     };
     const toggleClickHandler = () => {
         document.body.classList.toggle('dark')
@@ -24,6 +24,12 @@ export default function Email() {
 
     const SendClickHandler = () => {
         setSendClickStatus(true)
+
+        setTimeout(() => {
+            setSubmitClick(false)  
+        }, 2000);
+        setSubmitClick(true)
+
         if (ContextValue.inputsValidTrue && ContextValue.SubjectValue && ContextValue.TextValue && ContextValue.EmailValue) {
             swal({
                 title: "Email Was Sent",
@@ -31,6 +37,13 @@ export default function Email() {
                 icon: "success",
                 dangerMode: true,
             })
+
+        
+
+ 
+          
+
+
             fetch(`https://keyhangard.ir/mail?to=${ContextValue.EmailValue}&text=${ContextValue.TextValue}&subject=${ContextValue.SubjectValue}`, {
                 method: 'POST'
             }).then(res => console.log(res))
@@ -136,7 +149,7 @@ export default function Email() {
             <main>
                 <nav>
                     <div className='d-flex align-items-center'>
-                        <img src='../../images/New Project (2).png' alt="" />
+                        <img src='images/New Project (2).png' alt="" />
                         <a href='https://t.me/REPORT_BUGS' className='mx-2'>report bugs</a>
                     </div>
 
@@ -149,15 +162,15 @@ export default function Email() {
 
 
                 <section>
-                    <Input sendClickStatus={sendClickStatus} name='Email' placeholder='To...' />
-                    <Input sendClickStatus={sendClickStatus} name='Subject' placeholder='Subject...' />
-                    <Input sendClickStatus={sendClickStatus} name='Text' placeholder='Text...' />
+                    <Input sendClickStatus={sendClickStatus} SubmitClick={SubmitClick} name='Email' placeholder='To...' />
+                    <Input sendClickStatus={sendClickStatus} SubmitClick={SubmitClick} name='Subject' placeholder='Subject...' />
+                    <Input sendClickStatus={sendClickStatus} SubmitClick={SubmitClick} name='Text' placeholder='Text...' />
 
                 </section>
 
                 <button onClick={SendClickHandler}>Send</button>
 
-                <a href="https://t.me/keyhangard"><img width='50' height='50' className='keyhan-logo' src={!darkMode ? '../images/kg-logo-transw.png' : 'images/kg-logo-transparent (1).png'} alt="keyhanLogo" /></a>
+                <a href="https://t.me/keyhangard"><img width='50' height='50' className='keyhan-logo' src={!darkMode ? 'images/kg-logo-transw.png' : 'images/kg-logo-transparent (1).png'} alt="keyhanLogo" /></a>
             </main>
         </>
     )
