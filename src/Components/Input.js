@@ -25,31 +25,34 @@ export default function Input({ placeholder, name, SubmitClick,setEmailValidatio
     }
 
   }
+ 
+
 
 
   useEffect(() => {
 
-    switch (name) {
-      case 'Email': {
-        setRegex(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$/)
-        setregexStatus(InputRegex.test(Value))
-        if (regexStatus) {
-          console.log(regexStatus);
-        setEmailValidation(true)
-        }
-        else {
-        setEmailValidation(false)
-        }
-
-        break
+  
+  switch (name) {
+    case 'Email': {
+      setRegex(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$/)
+      setregexStatus(InputRegex.test(ContextValue.EmailValue))
+      if (regexStatus) {
+        console.log(regexStatus);
+      setEmailValidation(true)
+      }
+      else {
+      setEmailValidation(false)
       }
 
+      break
     }
 
+  }
 
 
 
-  }, [Value])
+console.log(regexStatus);
+  }, [ContextValue.EmailValue])
 
 useEffect(() => {
 
